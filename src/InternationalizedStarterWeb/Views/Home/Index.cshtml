@@ -67,68 +67,68 @@
 
 <div class="row">
     <div class="col-md-4">
-		@{
-			var provider1 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
-			{
-				["Hello {0}! You have {1} unread message(s)."] = "Bonjour {0}! Vous avez {1} messages non lus."
-			});
+        @{
+            var provider1 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
+            {
+                ["Hello {0}! You have {1} unread message(s)."] = "Bonjour {0}! Vous avez {1} messages non lus."
+            });
 
-			var provider2 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
-			{
-				["Hello {Name}! You have {MessageCount} unread {MessageCount:message|messages}."] =
-					"Bonjour {Name}! Vous avez {MessageCount} {MessageCount:message non lu|messages non lus}."
-			});
+            var provider2 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
+            {
+                ["Hello {Name}! You have {MessageCount} unread {MessageCount:message|messages}."] =
+                    "Bonjour {Name}! Vous avez {MessageCount} {MessageCount:message non lu|messages non lus}."
+            });
 
-			var provider3 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
-			{
-				["Hello {name}! You have {count, plural, zero {no unread messages} one {one unread message} other {# unread messages}}."] =
-					"Bonjour {name}! Vous {count, plural, zero {ne avez pas de messages non lus} one {avez un message non lu} other {avez # messages non lus}}."
-			});
+            var provider3 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
+            {
+                ["Hello {name}! You have {count, plural, zero {no unread messages} one {one unread message} other {# unread messages}}."] =
+                    "Bonjour {name}! Vous {count, plural, zero {ne avez pas de messages non lus} one {avez un message non lu} other {avez # messages non lus}}."
+            });
 
-			var provider4 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
-			{
-				["Hello {Name}! You have {MessageCount, plural, zero {no unread messages} one {one unread message} other {# unread messages}}."] =
-					"Bonjour {Name}! Vous {MessageCount, plural, zero {ne avez pas de messages non lus} one {avez un message non lu} other {avez # messages non lus}}."
-			});
+            var provider4 = new Apex.Localization.Example.LocalizedStringProvider(new Dictionary<string, string>
+            {
+                ["Hello {Name}! You have {MessageCount, plural, zero {no unread messages} one {one unread message} other {# unread messages}}."] =
+                    "Bonjour {Name}! Vous {MessageCount, plural, zero {ne avez pas de messages non lus} one {avez un message non lu} other {avez # messages non lus}}."
+            });
 
-			var formatter1 = new Apex.Localization.Example.SmartFormatter();
-			var formatter2 = new Apex.Localization.Example.MessageFormat();
+            var formatter1 = new Apex.Localization.Example.SmartFormatter();
+            var formatter2 = new Apex.Localization.Example.MessageFormat();
 
-			var T1 = new Apex.Localization.StringLocalizer(provider1);
-			var T2 = new Apex.Localization.StringLocalizer(provider2, formatter1);
-			var T3 = new Apex.Localization.StringLocalizer(provider3, formatter2);
-			var T4 = new Apex.Localization.StringLocalizer(provider4, formatter2);
+            var T1 = new Apex.Localization.StringLocalizer(provider1);
+            var T2 = new Apex.Localization.StringLocalizer(provider2, formatter1);
+            var T3 = new Apex.Localization.StringLocalizer(provider3, formatter2);
+            var T4 = new Apex.Localization.StringLocalizer(provider4, formatter2);
 
-			var person = new
-			{
-				Name = "John Doe",
-				MessageCount = 1
-			};
+            var person = new
+            {
+                Name = "John Doe",
+                MessageCount = 1
+            };
         }
 
-		<ul>
-			<!-- Regular String.Format -->
-			<li>@T1["Hello {0}! You have {1} unread message(s).", person.Name, person.MessageCount]</li>
+        <ul>
+            <!-- Regular String.Format -->
+            <li>@T1["Hello {0}! You have {1} unread message(s).", person.Name, person.MessageCount]</li>
 
-			<!-- SmartFormat.NET -->
-			<li>@T2["Hello {Name}! You have {MessageCount} unread {MessageCount:message|messages}.", person]</li>
+            <!-- SmartFormat.NET -->
+            <li>@T2["Hello {Name}! You have {MessageCount} unread {MessageCount:message|messages}.", person]</li>
 
-			<!-- messageformat.net (Dictionary) -->
-			<li>
-				@T3[
-					"Hello {name}! You have {count, plural, zero {no unread messages} one {one unread message} other {# unread messages}}.",
-					new Dictionary<string, object> { ["name"] = person.Name, ["count"] = person.MessageCount }
-				]
-			</li>
-			
-			<!-- messageformat.net (Object) -->
-			<li>
-				@T4[
-					"Hello {Name}! You have {MessageCount, plural, zero {no unread messages} one {one unread message} other {# unread messages}}.",
-					person
-				]
-			</li>
-		</ul>
+            <!-- messageformat.net (Dictionary) -->
+            <li>
+                @T3[
+                    "Hello {name}! You have {count, plural, zero {no unread messages} one {one unread message} other {# unread messages}}.",
+                    new Dictionary<string, object> { ["name"] = person.Name, ["count"] = person.MessageCount }
+                ]
+            </li>
+
+            <!-- messageformat.net (Object) -->
+            <li>
+                @T4[
+                    "Hello {Name}! You have {MessageCount, plural, zero {no unread messages} one {one unread message} other {# unread messages}}.",
+                    person
+                ]
+            </li>
+        </ul>
 
         <h2>@LocString["This application consists of:"]</h2>
         <ul>
