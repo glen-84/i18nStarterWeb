@@ -1,7 +1,7 @@
 ﻿namespace Apex.Localization
 {
-	public interface ILocalizedStringFormatter
-	{
-		string Format(string format, params object[] arguments);
-	}
+    public interface ILocalizedStringFormatter
+    {
+        string Format(string format, params object[] arguments);
+    }
 }

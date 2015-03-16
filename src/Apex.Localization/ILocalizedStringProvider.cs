@@ -2,10 +2,10 @@
 
 namespace Apex.Localization
 {
-	public interface ILocalizedStringProvider
-	{
-		string GetString(string name, CultureInfo culture);
+    public interface ILocalizedStringProvider
+    {
+        string GetString(string name, CultureInfo culture);
 
-		string GetString(string name, CultureInfo culture, string textDomain);
-	}
+        string GetString(string name, CultureInfo culture, string textDomain);
+    }
 }
